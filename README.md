@@ -47,6 +47,8 @@ exit
 
 ### load some modules into kernel for md
 
+these modules will be included when building the init ram fs so the md can be mounted
+
 `sudo nano /etc/initramfs-tools/modules`
 
 and add
@@ -101,15 +103,20 @@ change the line to match your md device
 
 striping and mirroring using nvme allows for high speed data transfer, since i'm runing some resource intensive services i've increased the size of my swap to 32GB
 
+turn swap off and edit config
+
 ```
 sudo dphys-swapfile swapoff
 sudo nano /etc/dphys-swapfile
 ```
 
 change config to
+
 ```
 CONF_SWAPFACTOR=4
 CONF_MAXSWAP=32768
-´´´
+```
+
+turn swap back on
 
 `sudo dphys-swapfile swapon`
